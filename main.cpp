@@ -57,59 +57,59 @@ Thing: Car Wash
  */
 
 /*
-Thing 1)
+Thing 1) kitchen range (oven stove)
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) brand name
+    2) number of burner
+    3) number of oven rack
+    4) oven capacity (size in cubic feet)
+    5) warranty duration (in month)
 3 things it can do:
-    1)
-    2)
-    3)
+    1) broil food
+    2) oven bake food
+    3) light up
  */
 
 /*
-Thing 2)
+Thing 2) laptop
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) model name
+    2) screen display size (in inch)
+    3) RAM size (in GB)
+    4) storage size (in GB)
+    5) weight (in lbs)
 3 things it can do:
-    1)
-    2)
-    3)
+    1) connect to Wifi
+    2) check available OS update
+    3) play audio
  */
 
 /*
-Thing 3)
+Thing 3) fruit tree
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) name
+    2) height
+    3) bark thickness diameter
+    4) fruit color
+    5) harvest season
 3 things it can do:
-    1)
-    2)
-    3)
+    1) produce oxygen
+    2) absorb carbon dioxide
+    3) produce fruit
  */
 
 /*
-Thing 4)
+Thing 4) camera
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) brand name
+    2) resolution (in megapixel)
+    3) number of shooting mode
+    4) number of white balance mode
+    5) weight (in lbs)
 3 things it can do:
-    1)
-    2)
-    3)
+    1) shoot photo
+    2) record video
+    3) play flash
  */
 
 
