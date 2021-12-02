@@ -65,17 +65,17 @@ Part1 will be broken up into 5 separate steps
 */
 
 /*
-Thing 10)
+Thing 10) Kitchen range
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Cooktop
+    2) Oven
+    3) Controls
+    4) Range hood
+    5) Under stove storage
 3 things it can do:
-    1)
-    2)
-    3)
+    1) Bake food
+    2) Light up
+    3) Suck smoke
  */
 
 
@@ -84,11 +84,11 @@ Thing 10)
 /*
 Thing 1) kitchen range (oven stove)
 5 properties:
-    1) brand name
-    2) number of burner
-    3) number of oven rack
-    4) oven capacity (size in cubic feet)
-    5) warranty duration (in month)
+    1) brand name (std::string)
+    2) number of burner (int)
+    3) number of oven rack (int)
+    4) oven capacity (float)
+    5) warranty duration in month (int)
 3 things it can do:
     1) broil food
     2) oven bake food
@@ -98,11 +98,11 @@ Thing 1) kitchen range (oven stove)
 /*
 Thing 2) laptop
 5 properties:
-    1) model name
-    2) screen display size (in inch)
-    3) RAM size (in GB)
-    4) storage size (in GB)
-    5) weight (in lbs)
+    1) model name (std::string)
+    2) screen display size in inch (float)
+    3) RAM size in GB (int)
+    4) storage size in GB (int)
+    5) weight in lbs (float)
 3 things it can do:
     1) connect to Wifi
     2) check available OS update
@@ -112,11 +112,11 @@ Thing 2) laptop
 /*
 Thing 3) fruit tree
 5 properties:
-    1) name
-    2) height
-    3) bark thickness diameter
-    4) fruit color
-    5) harvest season
+    1) name (std::string)
+    2) height (float)
+    3) bark thickness diameter (double)
+    4) fruit color (std::string)
+    5) harvest season (std::string)
 3 things it can do:
     1) produce oxygen
     2) absorb carbon dioxide
@@ -126,11 +126,11 @@ Thing 3) fruit tree
 /*
 Thing 4) camera
 5 properties:
-    1) brand name
-    2) resolution (in megapixel)
-    3) number of shooting mode
-    4) number of white balance mode
-    5) weight (in lbs)
+    1) brand name (std::string)
+    2) resolution in megapixel (float)
+    3) number of shooting mode (int)
+    4) number of white balance mode (int)
+    5) weight in lbs (float)
 3 things it can do:
     1) shoot photo
     2) record video
