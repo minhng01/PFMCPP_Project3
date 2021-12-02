@@ -36,51 +36,51 @@ Sub Object 1: Steering Wheel
     Name 4 things you'll find on the:    Steering Wheel
         1) paddle shifters
         2) 'cruise control' controls
-        3) 
-        4) 
+        3) sound system controls
+        4) phone answering button
     Name 2 things you can do with the:   Steering Wheel
         1) adjust cruise control settings.
-        2)
+        2) answer phone calls.
         
 Sub Object 2: Instrument Cluster
     Name 4 things you'll find on the:   Instrument Cluster
-        1)
-        2)
-        3)
-        4)
+        1) speedometer
+        2) turn signal arrows
+        3) tachometer
+        4) temperature indicator
     Name 3 things you can do with the:   Instrument Cluster
-        1)
-        2)
-        3)
+        1) signal turn left or right
+        2) check speed
+        3) check temperature
     
 Sub Object 3: Environment Controls
     Name 3 things you'll find on the:    Environment Controls
-        1)
-        2)
-        3)
+        1) air conditioning
+        2) fan button
+        3) temperature control
     Name 3 things you can do with the:   Environment Controls
-        1)
-        2)
-        3)
+        1) enable air conditioning
+        2) adjust temperature
+        3) adjust air flow
 
 Sub Object 4: Infotainment System
     Name 3 things you'll find on the:    Infotainment System
-        1)
-        2)
-        3)
+        1) power on/off
+        2) volume control
+        3) radio button
     Name 3 things you can do with the:   Infotainment System
-        1)
-        2)
-        3)
+        1) turn on/off infotainment system
+        2) turn on radio
+        3) adjust volume
 
 Sub Object 5: Seat 
     Name 3 things you'll find on the:    Seat
-        1)
-        2)
-        3)
+        1) arm rest
+        2) seat base
+        3) back rest
     Name 2 things you can do with the:   Seat
-        1)
-        2)
+        1) move seat base
+        2) adjust seat recline angle
 */
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
