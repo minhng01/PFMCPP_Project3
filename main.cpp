@@ -80,78 +80,6 @@ Part1 will be broken up into 5 separate steps
 3) move Thing 5-9 to between your Thing 4 and Thing 10.
 */
 
-/*
-Thing 5)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 6)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 7)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 8)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 9)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-
-
 
 
 /*
@@ -210,6 +138,75 @@ Thing 4) camera
     3) play flash
  */
 
+/*
+Thing 5) Cooktop
+5 properties:
+    1) number of burner (int)
+    2) surface material (std::string)
+    3) cooktop voltage requirement (int)
+    4) width (float)
+    5) depth (float)
+3 things it can do:
+    1) burn food
+    2) consume electric
+    3) boil water
+ */
+
+/*
+Thing 6) Oven
+5 properties:
+    1) number of racks (int)
+    2) oven capacity (double)
+    3) door material (std::string)
+    4) number of light bulbs (int)
+    5) temperature sensor type (std::string)
+3 things it can do:
+    1) broil
+    2) bake
+    3) self-clean
+ */ 
+
+/*
+Thing 7) Controls
+5 properties:
+    1) number of burner knobs (int)
+    2) clock type (std::string)
+    3) number of oven cooking option (int)
+    4) oven power on light color (std::string)
+    5) information display size (float)
+3 things it can do:
+    1) adjust oven temperature
+    2) change cooking timer
+    3) turn on oven
+ */
+
+/*
+Thing 8) Range hood
+5 properties:
+    1) chimmney height (float)
+    2) hood height (float)
+    3) number of fan strength levels (int)
+    4) material (std::string)
+    5) light type (std::string)
+3 things it can do:
+    1) suck smoke
+    2) light on
+    3) control fan strength
+ */
+
+/*
+Thing 9) Under stove storage
+5 properties:
+    1) drawer color (std::string)
+    2) handle color (std::string)
+    3) length of sliding rail (float)
+    4) material (std::string)
+    5) capacity (double)
+3 things it can do:
+    1) slide out
+    2) slide in
+    3) contain bakeware
+ */
 
 /*
 Thing 10) Kitchen range
