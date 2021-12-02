@@ -64,19 +64,7 @@ Part1 will be broken up into 5 separate steps
 3) Move the Thing 10 pseudo-code to after your Thing1-4 in the project.
 */
 
-/*
-Thing 10) Kitchen range
-5 properties:
-    1) Cooktop
-    2) Oven
-    3) Controls
-    4) Range hood
-    5) Under stove storage
-3 things it can do:
-    1) Bake food
-    2) Light up
-    3) Suck smoke
- */
+
 
 
 
@@ -138,6 +126,19 @@ Thing 4) camera
  */
 
 
+/*
+Thing 10) Kitchen range
+5 properties:
+    1) Cooktop
+    2) Oven
+    3) Controls
+    4) Range hood
+    5) Under stove storage
+3 things it can do:
+    1) Bake food
+    2) Light up
+    3) Suck smoke
+ */
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
