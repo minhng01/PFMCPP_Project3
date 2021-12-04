@@ -201,6 +201,41 @@ Thing 1) kitchen range (oven stove)
     2) oven bake food
     3) light up
  */
+struct OvenStove
+{
+    // brand name
+    std::string brandName = "GE";
+    // number of burner
+    int numberOfBurner = 4;
+    // number of oven rack
+    int numberOfRack = 2;
+    // oven capacity
+    float ovenCapacity = 5.0f;
+    // warranty duration in month
+    int warrantyDuration = 12;
+
+    struct FoodItem
+    {
+        std::string type = "Poultry";
+        std::string name = "Chicken breast";
+        float weight = 1.0f;
+        bool isSeasoned = false;
+        int expirationDayRemain = 7;
+
+        void clean(std::string cleaningType = "Salted water");
+        void season(std::string mainCondiment = "Pepper");
+        void cut(int numberOfPortion = 3, std::string tool = "Long knife");
+    };
+
+    // broil food
+    void broilFood(FoodItem food, int temperature, int durationInMinute);
+    // oven bake food
+    void bakeFood(FoodItem food, int temperature, int durationInMinute, int rackId, bool preHeat);
+    // light up
+    void lightUp(bool lightStatus);
+
+    FoodItem mainIngredient;
+};
 
 /*
 Thing 2) laptop
@@ -215,6 +250,26 @@ Thing 2) laptop
     2) check available OS update
     3) play audio
  */
+struct Laptop
+{
+    // model name
+    std::string modelName = "Thinkpad";
+    // screen display size in inch
+    float screenDisplay = 15.6f;
+    // RAM size in GB
+    int RAMSize = 32;
+    // storage size in GB
+    int storageSize = 2000;
+    // weight in lbs
+    float weight = 6.2f;
+
+    // connect to Wifi
+    void connectToWifi(bool connectionStatus = false);
+    // check available OS update
+    std::string checkAvailableOSUpdate(int currentOSId);
+    // play audio
+    void playAudio(int audioFileId = 0, int volume = 50, std::string playMode = "Headphones");
+};
 
 /*
 Thing 3) fruit tree
@@ -229,6 +284,26 @@ Thing 3) fruit tree
     2) absorb carbon dioxide
     3) produce fruit
  */
+struct FruitTree
+{
+    // name
+    std::string name = "Apple Tree";
+    // height
+    float height = 10.5f;
+    // bark thickness diameter
+    double barkThicknessDiameter = 2.456;
+    // fruit color
+    std::string fruitColor = "Red";
+    // harvest season
+    std::string harvestSeason = "September";
+
+    // produce oxygen
+    void produceOxygen(int currentDayTimeInHour = 7);
+    // absorb carbon dioxide
+    void absorbCarbonDioxide(int currentDayTimeInHour = 21);
+    // produce fruit
+    int produceFruit(std::string currentSeason = "December");
+};
 
 /*
 Thing 4) camera
@@ -243,6 +318,41 @@ Thing 4) camera
     2) record video
     3) play flash
  */
+struct Camera
+{
+    // brand name
+    std::string brandName = "Canon";
+    // resolution in megapixel
+    float resolution = 26.7f;
+    // number of shooting mode
+    int numberOfShootingMode = 5;
+    // number of white balance mode
+    int numberOfWhiteBalanceMode = 5;
+    // weight in lbs
+    float weight = 2.2f;
+
+    struct Len
+    {
+        std::string model = "Canon EF-S";
+        int maxFocalLengthInMM = 300;
+        int minFocalLengthInMM = 55;
+        int filterDiameterInMM = 58;
+        float weightInOz = 13.2f;
+
+        void cover();
+        void zoom(float zoomMode = 1.0f);
+        void getFocus(double distanceToObject);
+    };
+
+    // shoot photo
+    void shootPhoto(Len currentLen, char shootingMode = 'A');
+    // record video
+    void recordVideo(Len currentLen, int durationInSecond);
+    // play flash
+    void playFlash(bool lowLightIntensity = true);
+
+    Len includedLen;
+};
 
 /*
 Thing 5) Cooktop
@@ -257,6 +367,26 @@ Thing 5) Cooktop
     2) consume electric
     3) boil water
  */
+struct Cooktop
+{
+    // number of burner
+    int numberOfBurner = 4;
+    // surface material
+    std::string surfaceMaterial = "Stainless steel";
+    // cooktop voltage requirement
+    int cooktopVoltageRequirement = 120;
+    // width
+    float width;
+    // depth
+    float depth;
+
+    // burn food
+    void burnFood();
+    // consume electric
+    double consumeElectric(bool isConnectedToSource = true);
+    // boil water
+    void boilWater(int burnerId, int durationInSecond);
+};
 
 /*
 Thing 6) Oven
@@ -271,6 +401,26 @@ Thing 6) Oven
     2) bake
     3) self-clean
  */ 
+struct Oven
+{
+    // number of racks
+    int numberOfRack = 2;
+    // oven capacity
+    double ovenCapacity = 5.5;
+    // door material
+    std::string doorMaterial = "Glass";
+    // number of light bulbs
+    int numberOfLightBulb = 2;
+    // temperature sensor type
+    std::string temperatureSensorType;
+
+    // broil
+    void broil(int temperatureInFarenheit, int durationInMinute);
+    // bake
+    void bake(int rackId, int temperatureInFarenheit, int durationInMinute);
+    // self-clean
+    void selfClean();
+};
 
 /*
 Thing 7) Controls
@@ -285,6 +435,26 @@ Thing 7) Controls
     2) change cooking timer
     3) turn on oven
  */
+struct Control
+{
+    // number of burner knobs
+    int numberOfBurnerKnob = 4;
+    // clock type
+    std::string clockType = "Digital";
+    // number of oven cooking option
+    int numberOfOvenCookingOption = 3;
+    // oven power on light color
+    std::string ovenPowerOnLightColor = "Orange";
+    // information display size
+    float infoDisplaySize;
+
+    // adjust oven temperature
+    int adjustOvenTemperature(int currentTemperature, int numberOfUpButtonClick, int numerOfDownButtonClick);
+    // change cooking timer in minutes
+    int changeCookingTimer(int currentTimer, int numberOfUpButtonClick, int numerOfDownButtonClick);
+    // turn on oven
+    void turnOnOven(bool isOvenOn = false);
+};
 
 /*
 Thing 8) Range hood
@@ -299,6 +469,26 @@ Thing 8) Range hood
     2) light on
     3) control fan strength
  */
+struct RangeHood
+{
+    // chimmney height
+    float chimneyHeight = 30.5f;
+    // hood height
+    float hoodHeight = 5.0f;
+    // number of fan strength levels
+    int numberOfFanStrengthLevel = 5;
+    // material
+    std::string material = "Steel";
+    // light type
+    std::string lightType = "LED";
+
+    // suck smoke
+    void suckSmoke(int fanStrengthLevel);
+    // light on
+    void turnLightOn();
+    // control fan strength
+    int controlFanStrength(int currentStrengthIndicator, int numberOfCounterClockwiseTurn, int numberOfClockWiseTurn);
+};
 
 /*
 Thing 9) Under stove storage
@@ -313,6 +503,26 @@ Thing 9) Under stove storage
     2) slide in
     3) contain bakeware
  */
+struct UnderStoveStorage
+{
+    // drawer color
+    std::string drawerColor = "Grey";
+    // handle color
+    std::string handleColor = "White";
+    // length of sliding rail
+    float lengthOfSlidingRail;
+    // material
+    std::string material = "Steel";
+    // capacity
+    double capacity;
+
+    // slide out
+    void slideOut();
+    // slide in
+    void slideIn();
+    // contain bakeware
+    void containBakeware(std::string bakewareName = "Baking pan", bool isFull = false);
+};
 
 /*
 Thing 10) Kitchen range
@@ -327,6 +537,26 @@ Thing 10) Kitchen range
     2) Light up
     3) Suck smoke
  */
+struct KitchenRange
+{
+    // Cooktop
+    Cooktop cookTop;
+    // Oven
+    Oven oven;
+    // Controls
+    Control panelControl;
+    // Range hood
+    RangeHood rangeHood;
+    // Under stove storage
+    UnderStoveStorage drawer;
+
+    // Bake food
+    void bakeFood(int foodId, int rackId, int temperatureInFarenheit, int durationInMinute);
+    // Light up
+    void lightUp(int lightIntensity = 1);
+    // Suck smoke
+    void ventSmoke();
+};
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
