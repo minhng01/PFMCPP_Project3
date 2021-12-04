@@ -331,7 +331,7 @@ struct Camera
     // weight in lbs
     float weight = 2.2f;
 
-    struct Len
+    struct Lens
     {
         std::string model = "Canon EF-S";
         int maxFocalLengthInMM = 300;
@@ -345,13 +345,13 @@ struct Camera
     };
 
     // shoot photo
-    void shootPhoto(Len currentLen, char shootingMode = 'A');
+    void shootPhoto(Lens currentLen, char shootingMode = 'A');
     // record video
-    void recordVideo(Len currentLen, int durationInSecond);
+    void recordVideo(Lens currentLen, int durationInSecond);
     // play flash
     void playFlash(bool lowLightIntensity = true);
 
-    Len includedLen;
+    Lens includedLen;
 };
 
 /*
