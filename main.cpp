@@ -129,30 +129,12 @@ struct CarWash
 
 
 
-/*
-Thing 1) kitchen range (oven stove)
-5 properties:
-    1) brand name (std::string)
-    2) number of burner (int)
-    3) number of oven rack (int)
-    4) oven capacity (float)
-    5) warranty duration in month (int)
-3 things it can do:
-    1) broil food
-    2) oven bake food
-    3) light up
- */
 struct OvenStove
 {
-    // brand name
     std::string brandName = "GE";
-    // number of burner
     int numberOfBurner = 4;
-    // number of oven rack
     int numberOfRack = 2;
-    // oven capacity
     float ovenCapacity = 5.0f;
-    // warranty duration in month
     int warrantyDuration = 12;
 
     struct FoodItem
@@ -168,108 +150,45 @@ struct OvenStove
         void cut(int numberOfPortion = 3, std::string tool = "Long knife");
     };
 
-    // broil food
     void broilFood(FoodItem food, int temperature, int durationInMinute);
-    // oven bake food
     void bakeFood(FoodItem food, int temperature, int durationInMinute, int rackId, bool preHeat);
-    // light up
     void lightUp(bool lightStatus);
 
     FoodItem mainIngredient;
 };
 
-/*
-Thing 2) laptop
-5 properties:
-    1) model name (std::string)
-    2) screen display size in inch (float)
-    3) RAM size in GB (int)
-    4) storage size in GB (int)
-    5) weight in lbs (float)
-3 things it can do:
-    1) connect to Wifi
-    2) check available OS update
-    3) play audio
- */
 struct Laptop
 {
-    // model name
     std::string modelName = "Thinkpad";
-    // screen display size in inch
     float screenDisplay = 15.6f;
-    // RAM size in GB
     int RAMSize = 32;
-    // storage size in GB
     int storageSize = 2000;
-    // weight in lbs
     float weight = 6.2f;
 
-    // connect to Wifi
     void connectToWifi(bool connectionStatus = false);
-    // check available OS update
     std::string checkAvailableOSUpdate(int currentOSId);
-    // play audio
     void playAudio(int audioFileId = 0, int volume = 50, std::string playMode = "Headphones");
 };
 
-/*
-Thing 3) fruit tree
-5 properties:
-    1) name (std::string)
-    2) height (float)
-    3) bark thickness diameter (double)
-    4) fruit color (std::string)
-    5) harvest season (std::string)
-3 things it can do:
-    1) produce oxygen
-    2) absorb carbon dioxide
-    3) produce fruit
- */
 struct FruitTree
 {
-    // name
     std::string name = "Apple Tree";
-    // height
     float height = 10.5f;
-    // bark thickness diameter
     double barkThicknessDiameter = 2.456;
-    // fruit color
     std::string fruitColor = "Red";
-    // harvest season
     std::string harvestSeason = "September";
 
-    // produce oxygen
     void produceOxygen(int currentDayTimeInHour = 7);
-    // absorb carbon dioxide
     void absorbCarbonDioxide(int currentDayTimeInHour = 21);
-    // produce fruit
     int produceFruit(std::string currentSeason = "December");
 };
 
-/*
-Thing 4) camera
-5 properties:
-    1) brand name (std::string)
-    2) resolution in megapixel (float)
-    3) number of shooting mode (int)
-    4) number of white balance mode (int)
-    5) weight in lbs (float)
-3 things it can do:
-    1) shoot photo
-    2) record video
-    3) play flash
- */
 struct Camera
 {
-    // brand name
     std::string brandName = "Canon";
-    // resolution in megapixel
     float resolution = 26.7f;
-    // number of shooting mode
     int numberOfShootingMode = 5;
-    // number of white balance mode
     int numberOfWhiteBalanceMode = 5;
-    // weight in lbs
     float weight = 2.2f;
 
     struct Lens
@@ -285,217 +204,88 @@ struct Camera
         void getFocus(double distanceToObject);
     };
 
-    // shoot photo
-    void shootPhoto(Lens currentLen, char shootingMode = 'A');
-    // record video
-    void recordVideo(Lens currentLen, int durationInSecond);
-    // play flash
+    void shootPhoto(Lens currentLens, char shootingMode = 'A');
+    void recordVideo(Lens currentLens, int durationInSecond);
     void playFlash(bool lowLightIntensity = true);
 
-    Lens includedLen;
+    Lens includedLens;
 };
 
-/*
-Thing 5) Cooktop
-5 properties:
-    1) number of burner (int)
-    2) surface material (std::string)
-    3) cooktop voltage requirement (int)
-    4) width (float)
-    5) depth (float)
-3 things it can do:
-    1) burn food
-    2) consume electric
-    3) boil water
- */
 struct Cooktop
 {
-    // number of burner
     int numberOfBurner = 4;
-    // surface material
     std::string surfaceMaterial = "Stainless steel";
-    // cooktop voltage requirement
     int cooktopVoltageRequirement = 120;
-    // width
     float width;
-    // depth
     float depth;
 
-    // burn food
     void burnFood();
-    // consume electric
     double consumeElectric(bool isConnectedToSource = true);
-    // boil water
     void boilWater(int burnerId, int durationInSecond);
 };
 
-/*
-Thing 6) Oven
-5 properties:
-    1) number of racks (int)
-    2) oven capacity (double)
-    3) door material (std::string)
-    4) number of light bulbs (int)
-    5) temperature sensor type (std::string)
-3 things it can do:
-    1) broil
-    2) bake
-    3) self-clean
- */ 
 struct Oven
 {
-    // number of racks
     int numberOfRack = 2;
-    // oven capacity
     double ovenCapacity = 5.5;
-    // door material
     std::string doorMaterial = "Glass";
-    // number of light bulbs
     int numberOfLightBulb = 2;
-    // temperature sensor type
     std::string temperatureSensorType;
 
-    // broil
     void broil(int temperatureInFarenheit, int durationInMinute);
-    // bake
     void bake(int rackId, int temperatureInFarenheit, int durationInMinute);
-    // self-clean
     void selfClean();
 };
 
-/*
-Thing 7) Controls
-5 properties:
-    1) number of burner knobs (int)
-    2) clock type (std::string)
-    3) number of oven cooking option (int)
-    4) oven power on light color (std::string)
-    5) information display size (float)
-3 things it can do:
-    1) adjust oven temperature
-    2) change cooking timer
-    3) turn on oven
- */
 struct Control
 {
-    // number of burner knobs
     int numberOfBurnerKnob = 4;
-    // clock type
     std::string clockType = "Digital";
-    // number of oven cooking option
     int numberOfOvenCookingOption = 3;
-    // oven power on light color
     std::string ovenPowerOnLightColor = "Orange";
-    // information display size
     float infoDisplaySize;
 
-    // adjust oven temperature
     int adjustOvenTemperature(int currentTemperature, int numberOfUpButtonClick, int numerOfDownButtonClick);
-    // change cooking timer in minutes
     int changeCookingTimer(int currentTimer, int numberOfUpButtonClick, int numerOfDownButtonClick);
-    // turn on oven
     void turnOnOven(bool isOvenOn = false);
 };
 
-/*
-Thing 8) Range hood
-5 properties:
-    1) chimmney height (float)
-    2) hood height (float)
-    3) number of fan strength levels (int)
-    4) material (std::string)
-    5) light type (std::string)
-3 things it can do:
-    1) suck smoke
-    2) light on
-    3) control fan strength
- */
 struct RangeHood
 {
-    // chimmney height
     float chimneyHeight = 30.5f;
-    // hood height
     float hoodHeight = 5.0f;
-    // number of fan strength levels
     int numberOfFanStrengthLevel = 5;
-    // material
     std::string material = "Steel";
-    // light type
     std::string lightType = "LED";
 
-    // suck smoke
     void suckSmoke(int fanStrengthLevel);
-    // light on
     void turnLightOn();
-    // control fan strength
     int controlFanStrength(int currentStrengthIndicator, int numberOfCounterClockwiseTurn, int numberOfClockWiseTurn);
 };
 
-/*
-Thing 9) Under stove storage
-5 properties:
-    1) drawer color (std::string)
-    2) handle color (std::string)
-    3) length of sliding rail (float)
-    4) material (std::string)
-    5) capacity (double)
-3 things it can do:
-    1) slide out
-    2) slide in
-    3) contain bakeware
- */
 struct UnderStoveStorage
 {
-    // drawer color
     std::string drawerColor = "Grey";
-    // handle color
     std::string handleColor = "White";
-    // length of sliding rail
     float lengthOfSlidingRail;
-    // material
     std::string material = "Steel";
-    // capacity
     double capacity;
 
-    // slide out
     void slideOut();
-    // slide in
     void slideIn();
-    // contain bakeware
     void containBakeware(std::string bakewareName = "Baking pan", bool isFull = false);
 };
 
-/*
-Thing 10) Kitchen range
-5 properties:
-    1) Cooktop
-    2) Oven
-    3) Controls
-    4) Range hood
-    5) Under stove storage
-3 things it can do:
-    1) Bake food
-    2) Light up
-    3) Suck smoke
- */
 struct KitchenRange
 {
-    // Cooktop
     Cooktop cookTop;
-    // Oven
     Oven oven;
-    // Controls
     Control panelControl;
-    // Range hood
     RangeHood rangeHood;
-    // Under stove storage
     UnderStoveStorage drawer;
 
-    // Bake food
     void bakeFood(int foodId, int rackId, int temperatureInFarenheit, int durationInMinute);
-    // Light up
     void lightUp(int lightIntensity = 1);
-    // Suck smoke
     void ventSmoke();
 };
 
