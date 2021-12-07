@@ -315,10 +315,8 @@ std::string Laptop::checkAvailableOSUpdate(int currentOSId)
     {
         return "Update version 10.";
     }
-    else
-    {
-        return "Up to date!";
-    }
+
+    return "Up to date!";
 }
 
 void Laptop::playAudio(int audioFileId, int volume, std::string playMode)
@@ -375,10 +373,8 @@ int FruitTree::produceFruit(std::string currentSeason)
     {
         return 1000;
     }
-    else
-    {
-        return 0;
-    }
+
+    return 0;
 }
 
 
@@ -425,7 +421,8 @@ void Camera::Lens::zoom(float zoomMode)
     {
         std::cout << "Zoom IN" << std::endl;
     }
-    else {
+    else
+    {
         std::cout << "Original" << std::endl;
     }
 }
