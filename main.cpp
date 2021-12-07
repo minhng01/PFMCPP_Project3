@@ -107,9 +107,51 @@ struct CarWash
     you should be able to deduce the return type of those functions based on their usage in Person::run()
     You'll need to insert the Person struct from the video in the space below.
  */
+struct Person
+{
+    int age;
+    int height;
+    float hairLength;
+    float GPA;
+    unsigned int SATScore;
+    int distanceTraveled;
 
+    struct Foot
+    {
+        int size = 3;
 
+        int stepSize()
+        {
+            return size;
+        }
 
+        void stepForward()
+        {
+            // do something
+        }
+    };
+
+    Foot leftFoot;
+    Foot rightFoot;
+
+    void run(int howFast, bool startWithLeftFoot);
+};
+
+void Person::run(int howFast, bool startWithLeftFoot)
+{
+    if (startWithLeftFoot == true)
+    {
+        leftFoot.stepForward();
+        rightFoot.stepForward();
+    }
+    else
+    {
+        rightFoot.stepForward();
+        leftFoot.stepForward();
+    }
+
+    distanceTraveled += (leftFoot.stepSize() + rightFoot.stepSize()) * howFast; // howFast indicates ratio of stepSize in this case
+}
 
 
  /*
@@ -129,30 +171,12 @@ struct CarWash
 
 
 
-/*
-Thing 1) kitchen range (oven stove)
-5 properties:
-    1) brand name (std::string)
-    2) number of burner (int)
-    3) number of oven rack (int)
-    4) oven capacity (float)
-    5) warranty duration in month (int)
-3 things it can do:
-    1) broil food
-    2) oven bake food
-    3) light up
- */
 struct OvenStove
 {
-    // brand name
     std::string brandName = "GE";
-    // number of burner
     int numberOfBurner = 4;
-    // number of oven rack
     int numberOfRack = 2;
-    // oven capacity
     float ovenCapacity = 5.0f;
-    // warranty duration in month
     int warrantyDuration = 12;
 
     struct FoodItem
@@ -168,108 +192,198 @@ struct OvenStove
         void cut(int numberOfPortion = 3, std::string tool = "Long knife");
     };
 
-    // broil food
     void broilFood(FoodItem food, int temperature, int durationInMinute);
-    // oven bake food
     void bakeFood(FoodItem food, int temperature, int durationInMinute, int rackId, bool preHeat);
-    // light up
     void lightUp(bool lightStatus);
 
     FoodItem mainIngredient;
 };
 
-/*
-Thing 2) laptop
-5 properties:
-    1) model name (std::string)
-    2) screen display size in inch (float)
-    3) RAM size in GB (int)
-    4) storage size in GB (int)
-    5) weight in lbs (float)
-3 things it can do:
-    1) connect to Wifi
-    2) check available OS update
-    3) play audio
- */
+void OvenStove::FoodItem::clean(std::string cleaningType)
+{
+    if (expirationDayRemain <= 0)
+    {
+        std::cout << "Expired food!" << std::endl;
+        return;
+    }
+
+    std::cout << "Cleaning with " + cleaningType << std::endl;
+}
+
+void OvenStove::FoodItem::season(std::string mainCondiment)
+{
+    if (expirationDayRemain <= 0)
+    {
+        std::cout << "Expired food!" << std::endl;
+        return;
+    }
+
+    if (isSeasoned == false)
+    {
+        std::cout << "Season with " + mainCondiment << std::endl;
+        isSeasoned = true;
+    }
+
+}
+
+void OvenStove::FoodItem::cut(int numberOfPortion, std::string tool)
+{
+    if (expirationDayRemain <= 0)
+    {
+        std::cout << "Expired food!" << std::endl;
+        return;
+    }
+
+    if (numberOfPortion > 1)
+    {
+        std::cout << "Cut the food into " 
+                + std::to_string(numberOfPortion) 
+                + " with " 
+                + tool 
+                << std::endl;
+    }
+    else
+    {
+        std::cout << "Do nothing" << std::endl;
+    }
+}
+
+void OvenStove::broilFood(OvenStove::FoodItem food, int temperature, int durationInMinute)
+{
+    std::cout << "Broiling " + food.name 
+                    + " at " + std::to_string(temperature) + "F"
+                    + " in " + std::to_string(durationInMinute) + "minutes";
+}
+
+void bakeFood(OvenStove::FoodItem food, int temperature, int durationInMinute, int rackId, bool preHeat)
+{
+    if (rackId < 0)
+    {
+        std::cout << "ERROR!" << std::endl;
+        return;
+    }
+
+    if (preHeat == false)
+    {
+        std::cout << "Please pre heat oven before start!" << std::endl;
+        return;
+    }
+
+    std::cout << "Baking " + food.name 
+                    + " at " + std::to_string(temperature) + "F"
+                    + " in " + std::to_string(durationInMinute) + "minutes";
+}
+
+void lightUp(bool lightStatus)
+{
+    if (lightStatus == false)
+    {
+        std::cout << "Light ON" << std::endl;
+        lightStatus = true;
+    }
+    else
+    {
+        std::cout << "Do NOTHING" << std::endl;
+    }
+}
+
 struct Laptop
 {
-    // model name
     std::string modelName = "Thinkpad";
-    // screen display size in inch
     float screenDisplay = 15.6f;
-    // RAM size in GB
     int RAMSize = 32;
-    // storage size in GB
     int storageSize = 2000;
-    // weight in lbs
     float weight = 6.2f;
 
-    // connect to Wifi
     void connectToWifi(bool connectionStatus = false);
-    // check available OS update
     std::string checkAvailableOSUpdate(int currentOSId);
-    // play audio
     void playAudio(int audioFileId = 0, int volume = 50, std::string playMode = "Headphones");
 };
 
-/*
-Thing 3) fruit tree
-5 properties:
-    1) name (std::string)
-    2) height (float)
-    3) bark thickness diameter (double)
-    4) fruit color (std::string)
-    5) harvest season (std::string)
-3 things it can do:
-    1) produce oxygen
-    2) absorb carbon dioxide
-    3) produce fruit
- */
+void Laptop::connectToWifi(bool connectionStatus)
+{
+    if (connectionStatus == false)
+    {
+        connectionStatus = true;
+    }
+    std::cout << "You are connected to the Internet" << std::endl;
+}
+
+std::string Laptop::checkAvailableOSUpdate(int currentOSId)
+{
+    if (currentOSId < 10) // assume 10 is the latest OS id
+    {
+        return "Update version 10.";
+    }
+
+    return "Up to date!";
+}
+
+void Laptop::playAudio(int audioFileId, int volume, std::string playMode)
+{
+    if (audioFileId < 0 || audioFileId > 99) // assume there is 100 audio files 
+    {
+        return;
+    }
+
+    if (volume > 70)
+    {
+        std::cout << "Warning: audio too loud!" << std::endl;
+    }
+
+    std::cout << "Playing audio " + std::to_string(audioFileId) 
+                + "at channel " + playMode 
+                << std::endl; 
+}
+
 struct FruitTree
 {
-    // name
     std::string name = "Apple Tree";
-    // height
     float height = 10.5f;
-    // bark thickness diameter
     double barkThicknessDiameter = 2.456;
-    // fruit color
     std::string fruitColor = "Red";
-    // harvest season
     std::string harvestSeason = "September";
 
-    // produce oxygen
     void produceOxygen(int currentDayTimeInHour = 7);
-    // absorb carbon dioxide
     void absorbCarbonDioxide(int currentDayTimeInHour = 21);
-    // produce fruit
     int produceFruit(std::string currentSeason = "December");
 };
 
-/*
-Thing 4) camera
-5 properties:
-    1) brand name (std::string)
-    2) resolution in megapixel (float)
-    3) number of shooting mode (int)
-    4) number of white balance mode (int)
-    5) weight in lbs (float)
-3 things it can do:
-    1) shoot photo
-    2) record video
-    3) play flash
- */
+void FruitTree::produceOxygen(int currentDayTimeInHour)
+{
+    if (currentDayTimeInHour > 5 && currentDayTimeInHour < 18) // from 6:00 to 17:59
+    {
+        std::cout << "Day time!" << std::endl;
+        std::cout << name << "is producing oxygen.";
+    }
+}
+
+void FruitTree::absorbCarbonDioxide(int currentDayTimeInHour)
+{
+    if (currentDayTimeInHour > 5 && currentDayTimeInHour < 18) // from 6:00 to 17:59
+    {
+        std::cout << "Day time!" << std::endl;
+        std::cout << name << "is absorbing carbon dioxide.";
+    }
+}
+
+int FruitTree::produceFruit(std::string currentSeason)
+{
+    if (currentSeason == harvestSeason)
+    {
+        return 1000;
+    }
+
+    return 0;
+}
+
+
 struct Camera
 {
-    // brand name
     std::string brandName = "Canon";
-    // resolution in megapixel
     float resolution = 26.7f;
-    // number of shooting mode
     int numberOfShootingMode = 5;
-    // number of white balance mode
     int numberOfWhiteBalanceMode = 5;
-    // weight in lbs
     float weight = 2.2f;
 
     struct Lens
@@ -285,219 +399,303 @@ struct Camera
         void getFocus(double distanceToObject);
     };
 
-    // shoot photo
-    void shootPhoto(Lens currentLen, char shootingMode = 'A');
-    // record video
-    void recordVideo(Lens currentLen, int durationInSecond);
-    // play flash
+    void shootPhoto(Lens currentLens, char shootingMode = 'A', bool lowLight = false);
+    void recordVideo(Lens currentLens, int durationInSecond);
     void playFlash(bool lowLightIntensity = true);
 
-    Lens includedLen;
+    Lens includedLens;
 };
 
-/*
-Thing 5) Cooktop
-5 properties:
-    1) number of burner (int)
-    2) surface material (std::string)
-    3) cooktop voltage requirement (int)
-    4) width (float)
-    5) depth (float)
-3 things it can do:
-    1) burn food
-    2) consume electric
-    3) boil water
- */
+void Camera::Lens::cover()
+{
+    // do something to cover
+}
+
+void Camera::Lens::zoom(float zoomMode)
+{
+    if (zoomMode < 1.0f)
+    {
+        std::cout << "Zoom OUT" << std::endl;
+    }
+    else if (zoomMode > 1.0f)
+    {
+        std::cout << "Zoom IN" << std::endl;
+    }
+    else
+    {
+        std::cout << "Original" << std::endl;
+    }
+}
+
+void Camera::Lens::getFocus(double distanceToObject)
+{
+    if (distanceToObject < 1)
+    {
+        std::cout << "Too close. Please move further." << std:: endl;
+    }
+    else if (distanceToObject > 100)
+    {
+        std::cout << "Too far. Please move closer." << std:: endl;
+    }
+    else
+    {
+        // get focus on object
+        std::cout << "Ready." << std::endl;
+    }
+}
+
+void Camera::shootPhoto(Camera::Lens currentLens, char shootingMode, bool lowLight)
+{
+    currentLens.getFocus(50); // assume default value 50 for photo
+    if (shootingMode == 'A')
+    {
+        std::cout << "Auto mode";
+        playFlash(lowLight); // auto mode play flash if low light
+    }
+    else if (shootingMode == 'M')
+    {
+        std::cout << "Please choose shutter speed" << std::endl;
+        std::cout << "Flash option";
+    }
+}
+
+void Camera::recordVideo(Camera::Lens currentLens, int durationInSecond)
+{
+    currentLens.getFocus(70); // assume default value 70 for video
+    std::cout << "Recording..." << std::endl;
+    // record video
+    std::cout << "Duration: " + std::to_string(durationInSecond) + " Seconds"; 
+}
+
+void Camera::playFlash(bool lowLightIntensity)
+{
+    if (lowLightIntensity == true)
+    {
+        // turn on Flash
+    }
+}
+
+
 struct Cooktop
 {
-    // number of burner
     int numberOfBurner = 4;
-    // surface material
     std::string surfaceMaterial = "Stainless steel";
-    // cooktop voltage requirement
     int cooktopVoltageRequirement = 120;
-    // width
     float width;
-    // depth
     float depth;
 
-    // burn food
     void burnFood();
-    // consume electric
     double consumeElectric(bool isConnectedToSource = true);
-    // boil water
     void boilWater(int burnerId, int durationInSecond);
 };
 
-/*
-Thing 6) Oven
-5 properties:
-    1) number of racks (int)
-    2) oven capacity (double)
-    3) door material (std::string)
-    4) number of light bulbs (int)
-    5) temperature sensor type (std::string)
-3 things it can do:
-    1) broil
-    2) bake
-    3) self-clean
- */ 
+void Cooktop::burnFood()
+{
+    std::cout << "Warning: Hot surface.";
+}
+
+double Cooktop::consumeElectric(bool isConnectedToSource)
+{
+    if (isConnectedToSource)
+    {
+        return 120; //assume value
+    }
+    return 0;
+}
+
+void Cooktop::boilWater(int burnerId, int durationInSecond)
+{
+    if (burnerId < 0 || burnerId >= numberOfBurner) 
+    {
+        return;
+    }
+    std::cout << "Boiling water at burner no." + std::to_string(burnerId)
+                + " in " + std::to_string(durationInSecond) + " seconds.";
+}
+
+
 struct Oven
 {
-    // number of racks
     int numberOfRack = 2;
-    // oven capacity
     double ovenCapacity = 5.5;
-    // door material
     std::string doorMaterial = "Glass";
-    // number of light bulbs
     int numberOfLightBulb = 2;
-    // temperature sensor type
     std::string temperatureSensorType;
 
-    // broil
     void broil(int temperatureInFarenheit, int durationInMinute);
-    // bake
     void bake(int rackId, int temperatureInFarenheit, int durationInMinute);
-    // self-clean
     void selfClean();
 };
 
-/*
-Thing 7) Controls
-5 properties:
-    1) number of burner knobs (int)
-    2) clock type (std::string)
-    3) number of oven cooking option (int)
-    4) oven power on light color (std::string)
-    5) information display size (float)
-3 things it can do:
-    1) adjust oven temperature
-    2) change cooking timer
-    3) turn on oven
- */
+void Oven::broil(int temperatureInFarenheit, int durationInMinute)
+{
+    std::cout << "Broiling in " + std::to_string(durationInMinute) 
+                    + " at " + std::to_string(temperatureInFarenheit) + "F";
+}
+
+void Oven::bake(int rackId, int temperatureInFarenheit, int durationInMinute)
+{
+    if (rackId < 0 || rackId >= numberOfRack)
+    {
+        return;
+    } 
+    if (durationInMinute > 300)
+    {
+        std::cout << "Warning: Too long. Might need to shorten time.";
+    }
+    if (temperatureInFarenheit > 450)
+    {
+        std::cout << "Max temperature.";
+        temperatureInFarenheit = 450;
+    }
+    std::cout << "Baking at " + std::to_string(temperatureInFarenheit)+ "F ...";
+}
+
+void Oven::selfClean()
+{
+    std::cout << "Self-cleaning...";
+}
+
+
 struct Control
 {
-    // number of burner knobs
     int numberOfBurnerKnob = 4;
-    // clock type
     std::string clockType = "Digital";
-    // number of oven cooking option
     int numberOfOvenCookingOption = 3;
-    // oven power on light color
     std::string ovenPowerOnLightColor = "Orange";
-    // information display size
     float infoDisplaySize;
 
-    // adjust oven temperature
     int adjustOvenTemperature(int currentTemperature, int numberOfUpButtonClick, int numerOfDownButtonClick);
-    // change cooking timer in minutes
     int changeCookingTimer(int currentTimer, int numberOfUpButtonClick, int numerOfDownButtonClick);
-    // turn on oven
     void turnOnOven(bool isOvenOn = false);
 };
 
-/*
-Thing 8) Range hood
-5 properties:
-    1) chimmney height (float)
-    2) hood height (float)
-    3) number of fan strength levels (int)
-    4) material (std::string)
-    5) light type (std::string)
-3 things it can do:
-    1) suck smoke
-    2) light on
-    3) control fan strength
- */
+int Control::adjustOvenTemperature(int currentTemperature, int numberOfUpButtonClick, int numberOfDownButtonClick)
+{
+    return (currentTemperature + 5 * (numberOfUpButtonClick - numberOfDownButtonClick)); // up and down in the unit of 5 degree
+}
+
+int Control::changeCookingTimer(int currentTimer, int numberOfUpButtonClick, int numberOfDownButtonClick)
+{
+    return (currentTimer + numberOfUpButtonClick - numberOfDownButtonClick);
+}
+
+void Control::turnOnOven(bool isOvenOn)
+{
+    if (isOvenOn == false)
+    {
+        std::cout << "Turning on...";
+        ovenPowerOnLightColor = "Orange";
+    }
+}
+
+
 struct RangeHood
 {
-    // chimmney height
     float chimneyHeight = 30.5f;
-    // hood height
     float hoodHeight = 5.0f;
-    // number of fan strength levels
     int numberOfFanStrengthLevel = 5;
-    // material
     std::string material = "Steel";
-    // light type
     std::string lightType = "LED";
 
-    // suck smoke
     void suckSmoke(int fanStrengthLevel);
-    // light on
     void turnLightOn();
-    // control fan strength
     int controlFanStrength(int currentStrengthIndicator, int numberOfCounterClockwiseTurn, int numberOfClockWiseTurn);
 };
 
-/*
-Thing 9) Under stove storage
-5 properties:
-    1) drawer color (std::string)
-    2) handle color (std::string)
-    3) length of sliding rail (float)
-    4) material (std::string)
-    5) capacity (double)
-3 things it can do:
-    1) slide out
-    2) slide in
-    3) contain bakeware
- */
+void RangeHood::suckSmoke(int fanStrengthLevel)
+{
+    if (fanStrengthLevel < (numberOfFanStrengthLevel - 1)) // from 0 to number of level
+    {
+        std::cout << "Fan is ON.";
+    }
+}
+
+void RangeHood::turnLightOn()
+{
+    std::cout << "Light is ON.";
+}
+
+int RangeHood::controlFanStrength(int currentStrengthIndicator, int numberOfCounterClockwiseTurn, int numberOfClockWiseTurn)
+{
+    if (currentStrengthIndicator == 0)
+    {
+        return (currentStrengthIndicator + numberOfClockWiseTurn);
+    }
+    if (currentStrengthIndicator == numberOfFanStrengthLevel - 1)
+    {
+        return (currentStrengthIndicator - numberOfCounterClockwiseTurn);
+    }
+    return (currentStrengthIndicator - numberOfCounterClockwiseTurn + numberOfClockWiseTurn);
+}
+
+
 struct UnderStoveStorage
 {
-    // drawer color
     std::string drawerColor = "Grey";
-    // handle color
     std::string handleColor = "White";
-    // length of sliding rail
     float lengthOfSlidingRail;
-    // material
     std::string material = "Steel";
-    // capacity
     double capacity;
 
-    // slide out
     void slideOut();
-    // slide in
     void slideIn();
-    // contain bakeware
     void containBakeware(std::string bakewareName = "Baking pan", bool isFull = false);
 };
 
-/*
-Thing 10) Kitchen range
-5 properties:
-    1) Cooktop
-    2) Oven
-    3) Controls
-    4) Range hood
-    5) Under stove storage
-3 things it can do:
-    1) Bake food
-    2) Light up
-    3) Suck smoke
- */
+void UnderStoveStorage::slideOut()
+{
+    std::cout << "Sliding out.";
+}
+
+void UnderStoveStorage::slideIn()
+{
+    std::cout << "Sliding in.";
+}
+
+void UnderStoveStorage::containBakeware(std::string bakewareName, bool isFull)
+{
+    if (isFull == true)
+    {
+        return;
+    }
+    std::cout << "Put " + bakewareName + "in.";
+}
+
+
+
 struct KitchenRange
 {
-    // Cooktop
     Cooktop cookTop;
-    // Oven
     Oven oven;
-    // Controls
     Control panelControl;
-    // Range hood
     RangeHood rangeHood;
-    // Under stove storage
     UnderStoveStorage drawer;
 
-    // Bake food
     void bakeFood(int foodId, int rackId, int temperatureInFarenheit, int durationInMinute);
-    // Light up
-    void lightUp(int lightIntensity = 1);
-    // Suck smoke
+    void lightUp();
     void ventSmoke();
 };
+
+void KitchenRange::bakeFood(int foodId, int rackId, int temperatureInFarenheit, int durationInMinute)
+{
+    if (foodId < 0 || foodId > 9) // assume only have 10 food items
+    {
+        return;
+    }
+    std::cout << "Start baking food item " + std::to_string(foodId) + " now."<< std::endl;
+    oven.bake(rackId, temperatureInFarenheit, durationInMinute);
+}
+
+void KitchenRange::lightUp()
+{
+    rangeHood.turnLightOn();
+}
+
+void KitchenRange::ventSmoke()
+{
+    rangeHood.suckSmoke(1); // default of fan strength level is 1
+}
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
