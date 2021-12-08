@@ -74,6 +74,8 @@ int main()
 
 struct OvenStove
 {
+    OvenStove();
+
     std::string brandName = "GE";
     int numberOfBurner = 4;
     int numberOfRack = 2;
@@ -82,6 +84,8 @@ struct OvenStove
 
     struct FoodItem
     {
+        FoodItem();
+
         std::string type = "Poultry";
         std::string name = "Chicken breast";
         float weight = 1.0f;
@@ -99,6 +103,16 @@ struct OvenStove
 
     FoodItem mainIngredient;
 };
+
+OvenStove::OvenStove()
+{
+    std::cout << "----------constructing OvenStove----------" << "\n";
+}
+
+OvenStove::FoodItem::FoodItem()
+{
+    std::cout << "----------constructing FoodItem----------" << "\n";
+}
 
 void OvenStove::FoodItem::clean(std::string cleaningType)
 {
@@ -156,7 +170,7 @@ void OvenStove::broilFood(OvenStove::FoodItem food, int temperature, int duratio
                     + " in " + std::to_string(durationInMinute) + "minutes";
 }
 
-void bakeFood(OvenStove::FoodItem food, int temperature, int durationInMinute, int rackId, bool preHeat)
+void OvenStove::bakeFood(OvenStove::FoodItem food, int temperature, int durationInMinute, int rackId, bool preHeat)
 {
     if (rackId < 0)
     {
@@ -175,7 +189,7 @@ void bakeFood(OvenStove::FoodItem food, int temperature, int durationInMinute, i
                     + " in " + std::to_string(durationInMinute) + "minutes";
 }
 
-void lightUp(bool lightStatus)
+void OvenStove::lightUp(bool lightStatus)
 {
     if (lightStatus == false)
     {
@@ -190,6 +204,8 @@ void lightUp(bool lightStatus)
 
 struct Laptop
 {
+    Laptop();
+
     std::string modelName = "Thinkpad";
     float screenDisplay = 15.6f;
     int RAMSize = 32;
@@ -200,6 +216,11 @@ struct Laptop
     std::string checkAvailableOSUpdate(int currentOSId);
     void playAudio(int audioFileId = 0, int volume = 50, std::string playMode = "Headphones");
 };
+
+Laptop::Laptop()
+{
+    std::cout << "----------constructing Laptop----------" << "\n";
+}
 
 void Laptop::connectToWifi(bool connectionStatus)
 {
@@ -239,6 +260,8 @@ void Laptop::playAudio(int audioFileId, int volume, std::string playMode)
 
 struct FruitTree
 {
+    FruitTree();
+    
     std::string name = "Apple Tree";
     float height = 10.5f;
     double barkThicknessDiameter = 2.456;
@@ -249,6 +272,11 @@ struct FruitTree
     void absorbCarbonDioxide(int currentDayTimeInHour = 21);
     int produceFruit(std::string currentSeason = "December");
 };
+
+FruitTree::FruitTree()
+{
+    std::cout << "----------constructing FruitTree----------" << "\n";
+}
 
 void FruitTree::produceOxygen(int currentDayTimeInHour)
 {
@@ -281,6 +309,8 @@ int FruitTree::produceFruit(std::string currentSeason)
 
 struct Camera
 {
+    Camera();
+    
     std::string brandName = "Canon";
     float resolution = 26.7f;
     int numberOfShootingMode = 5;
@@ -289,6 +319,8 @@ struct Camera
 
     struct Lens
     {
+        Lens();
+        
         std::string model = "Canon EF-S";
         int maxFocalLengthInMM = 300;
         int minFocalLengthInMM = 55;
@@ -307,9 +339,19 @@ struct Camera
     Lens includedLens;
 };
 
+Camera::Lens::Lens()
+{
+    std::cout << "----------constructing Lens----------" << "\n";
+}
+
+Camera::Camera()
+{
+    std::cout << "----------constructing Camera----------" << "\n";
+}
+
 void Camera::Lens::cover()
 {
-    // do something to cover
+    std::cout << "covering lens..." << "\n";
 }
 
 void Camera::Lens::zoom(float zoomMode)
@@ -372,13 +414,15 @@ void Camera::playFlash(bool lowLightIntensity)
 {
     if (lowLightIntensity == true)
     {
-        // turn on Flash
+        std::cout << "playing flash..." << "\n";
     }
 }
 
 
 struct Cooktop
 {
+    Cooktop();
+    
     int numberOfBurner = 4;
     std::string surfaceMaterial = "Stainless steel";
     int cooktopVoltageRequirement = 120;
@@ -389,6 +433,11 @@ struct Cooktop
     double consumeElectric(bool isConnectedToSource = true);
     void boilWater(int burnerId, int durationInSecond);
 };
+
+Cooktop::Cooktop()
+{
+    std::cout << "----------constructing Cooktop----------" << "\n";
+}
 
 void Cooktop::burnFood()
 {
@@ -417,6 +466,8 @@ void Cooktop::boilWater(int burnerId, int durationInSecond)
 
 struct Oven
 {
+    Oven();
+    
     int numberOfRack = 2;
     double ovenCapacity = 5.5;
     std::string doorMaterial = "Glass";
@@ -427,6 +478,11 @@ struct Oven
     void bake(int rackId, int temperatureInFarenheit, int durationInMinute);
     void selfClean();
 };
+
+Oven::Oven()
+{
+    std::cout << "----------constructing Oven----------" << "\n";
+}
 
 void Oven::broil(int temperatureInFarenheit, int durationInMinute)
 {
@@ -460,6 +516,8 @@ void Oven::selfClean()
 
 struct Control
 {
+    Control();
+    
     int numberOfBurnerKnob = 4;
     std::string clockType = "Digital";
     int numberOfOvenCookingOption = 3;
@@ -470,6 +528,11 @@ struct Control
     int changeCookingTimer(int currentTimer, int numberOfUpButtonClick, int numerOfDownButtonClick);
     void turnOnOven(bool isOvenOn = false);
 };
+
+Control::Control()
+{
+    std::cout << "----------constructing Control----------" << "\n";
+}
 
 int Control::adjustOvenTemperature(int currentTemperature, int numberOfUpButtonClick, int numberOfDownButtonClick)
 {
@@ -493,6 +556,8 @@ void Control::turnOnOven(bool isOvenOn)
 
 struct RangeHood
 {
+    RangeHood();
+
     float chimneyHeight = 30.5f;
     float hoodHeight = 5.0f;
     int numberOfFanStrengthLevel = 5;
@@ -503,6 +568,11 @@ struct RangeHood
     void turnLightOn();
     int controlFanStrength(int currentStrengthIndicator, int numberOfCounterClockwiseTurn, int numberOfClockWiseTurn);
 };
+
+RangeHood::RangeHood()
+{
+    std::cout << "----------constructing RangeHood----------" << "\n";
+}
 
 void RangeHood::suckSmoke(int fanStrengthLevel)
 {
@@ -530,9 +600,10 @@ int RangeHood::controlFanStrength(int currentStrengthIndicator, int numberOfCoun
     return (currentStrengthIndicator - numberOfCounterClockwiseTurn + numberOfClockWiseTurn);
 }
 
-
 struct UnderStoveStorage
 {
+    UnderStoveStorage();
+    
     std::string drawerColor = "Grey";
     std::string handleColor = "White";
     float lengthOfSlidingRail;
@@ -543,6 +614,11 @@ struct UnderStoveStorage
     void slideIn();
     void containBakeware(std::string bakewareName = "Baking pan", bool isFull = false);
 };
+
+UnderStoveStorage::UnderStoveStorage()
+{
+    std::cout << "----------constructing UnderStoveStorage----------" << "\n";
+}
 
 void UnderStoveStorage::slideOut()
 {
@@ -564,9 +640,10 @@ void UnderStoveStorage::containBakeware(std::string bakewareName, bool isFull)
 }
 
 
-
 struct KitchenRange
 {
+    KitchenRange();
+    
     Cooktop cookTop;
     Oven oven;
     Control panelControl;
@@ -577,6 +654,11 @@ struct KitchenRange
     void lightUp();
     void ventSmoke();
 };
+
+KitchenRange::KitchenRange()
+{
+    std::cout << "----------constructing KitchenRange----------" << "\n";
+}
 
 void KitchenRange::bakeFood(int foodId, int rackId, int temperatureInFarenheit, int durationInMinute)
 {
