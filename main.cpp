@@ -719,69 +719,69 @@ int main()
     laptop.connectToWifi(false);
     std::cout << laptop.checkAvailableOSUpdate(3);
     laptop.playAudio(2, 30, "Stereo speaker");
-    std:: cout << "\n";
+    std::cout << "\n";
 
     FruitTree appleTree;
     std::cout << "Harvest season: " << appleTree.harvestSeason << "\n";
     appleTree.produceOxygen(10);
     appleTree.absorbCarbonDioxide(10);
     std::cout << "Number of fruits tree produced: " << appleTree.produceFruit("September") << "\n";
-    std:: cout << "\n";
+    std::cout << "\n";
 
     Camera::Lens myLens;
     std::cout << "Lens model: " << myLens.model << "\n";
     myLens.cover();
     myLens.zoom(0.5f);
     myLens.getFocus(50);
-    std:: cout << "\n";
+    std::cout << "\n";
 
     Camera camera;
     std::cout << "Camera brand name: " << camera.brandName << "\n";
     camera.shootPhoto(myLens, 'A', false);
     camera.recordVideo(myLens, 40);
     camera.playFlash(true);
-    std:: cout << "\n";
+    std::cout << "\n";
 
     Cooktop cooktop;
     std::cout << "Number of burners: " << cooktop.numberOfBurner << "\n";
     cooktop.burnFood();
     std::cout << "Electric: " << cooktop.consumeElectric() << "\n";
     cooktop.boilWater(2, 20);
-    std:: cout << "\n";
+    std::cout << "\n";
 
     Oven oven;
     std::cout << "Number of racks: " << oven.numberOfRack << "\n";
     oven.broil(400, 3);
     oven.bake(1, 300, 120);
     oven.selfClean();
-    std:: cout << "\n";
+    std::cout << "\n";
 
     Control rangeControl;
     std::cout << "Clock type: " << rangeControl.clockType << "\n";
     std::cout << "Adjusted oven temperature: " << rangeControl.adjustOvenTemperature(300, 10, 0) << "\n";
     std::cout << "Cooking timer: " << rangeControl.changeCookingTimer(30, 2, 1) << "\n";
     rangeControl.turnOnOven(false);
-    std:: cout << "\n";
+    std::cout << "\n";
 
     RangeHood rangeHood;
     std::cout << "Material: " << rangeHood.material << "\n";
     rangeHood.suckSmoke(2);
     rangeHood.turnLightOn();
     std::cout << "Fan strength: " << rangeHood.controlFanStrength(2, 0, 0) << "\n";
-    std:: cout << "\n";
+    std::cout << "\n";
 
     UnderStoveStorage drawer;
     std::cout << "Drawer handle color: " << drawer.handleColor << "\n";
     drawer.slideOut();
     drawer.slideIn();
     drawer.containBakeware("Pan", false);
-    std:: cout << "\n";
+    std::cout << "\n";
 
     KitchenRange kitchenRange;
     kitchenRange.bakeFood(1, 1, 350, 80);
     kitchenRange.lightUp();
     kitchenRange.ventSmoke();
-    std:: cout << "\n";
+    std::cout << "\n";
 
     std::cout << "good to go!" << std::endl;
 }
