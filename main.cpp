@@ -441,7 +441,7 @@ Cooktop::Cooktop()
 
 void Cooktop::burnFood()
 {
-    std::cout << "Warning: Hot surface.";
+    std::cout << "Warning: Hot surface! \n";
 }
 
 double Cooktop::consumeElectric(bool isConnectedToSource)
@@ -460,7 +460,7 @@ void Cooktop::boilWater(int burnerId, int durationInSecond)
         return;
     }
     std::cout << "Boiling water at burner no." + std::to_string(burnerId)
-                + " in " + std::to_string(durationInSecond) + " seconds.";
+                + " in " + std::to_string(durationInSecond) + " seconds \n";
 }
 
 
@@ -487,7 +487,7 @@ Oven::Oven()
 void Oven::broil(int temperatureInFarenheit, int durationInMinute)
 {
     std::cout << "Broiling in " + std::to_string(durationInMinute) 
-                    + " at " + std::to_string(temperatureInFarenheit) + "F";
+                    + " minutes at " + std::to_string(temperatureInFarenheit) + "F \n";
 }
 
 void Oven::bake(int rackId, int temperatureInFarenheit, int durationInMinute)
@@ -498,19 +498,19 @@ void Oven::bake(int rackId, int temperatureInFarenheit, int durationInMinute)
     } 
     if (durationInMinute > 300)
     {
-        std::cout << "Warning: Too long. Might need to shorten time.";
+        std::cout << "Warning: Too long. Might need to shorten time. \n";
     }
     if (temperatureInFarenheit > 450)
     {
-        std::cout << "Max temperature.";
+        std::cout << "Max temperature.\n";
         temperatureInFarenheit = 450;
     }
-    std::cout << "Baking at " + std::to_string(temperatureInFarenheit)+ "F ...";
+    std::cout << "Baking at " + std::to_string(temperatureInFarenheit)+ "F ...\n";
 }
 
 void Oven::selfClean()
 {
-    std::cout << "Self-cleaning...";
+    std::cout << "Self-cleaning...\n";
 }
 
 
@@ -548,7 +548,7 @@ void Control::turnOnOven(bool isOvenOn)
 {
     if (isOvenOn == false)
     {
-        std::cout << "Turning on...";
+        std::cout << "Turning on...\n";
         ovenPowerOnLightColor = "Orange";
     }
 }
@@ -578,13 +578,13 @@ void RangeHood::suckSmoke(int fanStrengthLevel)
 {
     if (fanStrengthLevel < (numberOfFanStrengthLevel - 1)) // from 0 to number of level
     {
-        std::cout << "Fan is ON.";
+        std::cout << "Fan is ON.\n";
     }
 }
 
 void RangeHood::turnLightOn()
 {
-    std::cout << "Light is ON.";
+    std::cout << "Light is ON.\n";
 }
 
 int RangeHood::controlFanStrength(int currentStrengthIndicator, int numberOfCounterClockwiseTurn, int numberOfClockWiseTurn)
@@ -622,12 +622,12 @@ UnderStoveStorage::UnderStoveStorage()
 
 void UnderStoveStorage::slideOut()
 {
-    std::cout << "Sliding out.";
+    std::cout << "Sliding out.\n";
 }
 
 void UnderStoveStorage::slideIn()
 {
-    std::cout << "Sliding in.";
+    std::cout << "Sliding in.\n";
 }
 
 void UnderStoveStorage::containBakeware(std::string bakewareName, bool isFull)
@@ -636,7 +636,7 @@ void UnderStoveStorage::containBakeware(std::string bakewareName, bool isFull)
     {
         return;
     }
-    std::cout << "Put " + bakewareName + "in.";
+    std::cout << "Put " + bakewareName + " in.\n";
 }
 
 
@@ -740,9 +740,48 @@ int main()
     camera.shootPhoto(myLens, 'A', false);
     camera.recordVideo(myLens, 40);
     camera.playFlash(true);
-
-    
-
     std:: cout << "\n";
+
+    Cooktop cooktop;
+    std::cout << "Number of burners: " << cooktop.numberOfBurner << "\n";
+    cooktop.burnFood();
+    std::cout << "Electric: " << cooktop.consumeElectric() << "\n";
+    cooktop.boilWater(2, 20);
+    std:: cout << "\n";
+
+    Oven oven;
+    std::cout << "Number of racks: " << oven.numberOfRack << "\n";
+    oven.broil(400, 3);
+    oven.bake(1, 300, 120);
+    oven.selfClean();
+    std:: cout << "\n";
+
+    Control rangeControl;
+    std::cout << "Clock type: " << rangeControl.clockType << "\n";
+    std::cout << "Adjusted oven temperature: " << rangeControl.adjustOvenTemperature(300, 10, 0) << "\n";
+    std::cout << "Cooking timer: " << rangeControl.changeCookingTimer(30, 2, 1) << "\n";
+    rangeControl.turnOnOven(false);
+    std:: cout << "\n";
+
+    RangeHood rangeHood;
+    std::cout << "Material: " << rangeHood.material << "\n";
+    rangeHood.suckSmoke(2);
+    rangeHood.turnLightOn();
+    std::cout << "Fan strength: " << rangeHood.controlFanStrength(2, 0, 0) << "\n";
+    std:: cout << "\n";
+
+    UnderStoveStorage drawer;
+    std::cout << "Drawer handle color: " << drawer.handleColor << "\n";
+    drawer.slideOut();
+    drawer.slideIn();
+    drawer.containBakeware("Pan", false);
+    std:: cout << "\n";
+
+    KitchenRange kitchenRange;
+    kitchenRange.bakeFood(1, 1, 350, 80);
+    kitchenRange.lightUp();
+    kitchenRange.ventSmoke();
+    std:: cout << "\n";
+
     std::cout << "good to go!" << std::endl;
 }
