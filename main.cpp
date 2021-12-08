@@ -42,8 +42,6 @@ int main()
 
 struct OvenStove
 {
-    OvenStove();
-
     std::string brandName = "GE";
     int numberOfBurner = 4;
     int numberOfRack = 2;
@@ -52,18 +50,20 @@ struct OvenStove
 
     struct FoodItem
     {
-        FoodItem();
-
         std::string type = "Poultry";
         std::string name = "Chicken breast";
         float weight = 1.0f;
         bool isSeasoned = false;
         int expirationDayRemain = 7;
 
+        FoodItem();
+
         void clean(std::string cleaningType = "Salted water");
         void season(std::string mainCondiment = "Pepper");
         void cut(int numberOfPortion = 3, std::string tool = "Long knife");
     };
+
+    OvenStove();
 
     void broilFood(FoodItem food, int temperature, int durationInMinute);
     void bakeFood(FoodItem food, int temperature, int durationInMinute, int rackId, bool preHeat);
@@ -90,6 +90,8 @@ void OvenStove::FoodItem::clean(std::string cleaningType)
         return;
     }
 
+    std::cout << "Days till expiration date: " << expirationDayRemain << "\n";
+
     std::cout << "Cleaning with " + cleaningType << std::endl;
 }
 
@@ -100,6 +102,8 @@ void OvenStove::FoodItem::season(std::string mainCondiment)
         std::cout << "Expired food!" << std::endl;
         return;
     }
+
+    std::cout << "Days till expiration date: " << expirationDayRemain << "\n"; 
 
     if (isSeasoned == false)
     {
@@ -116,6 +120,8 @@ void OvenStove::FoodItem::cut(int numberOfPortion, std::string tool)
         std::cout << "Expired food!" << std::endl;
         return;
     }
+
+    std::cout << "Days till expiration date: " << expirationDayRemain << "\n";
 
     if (numberOfPortion > 1)
     {
@@ -172,13 +178,13 @@ void OvenStove::lightUp(bool lightStatus)
 
 struct Laptop
 {
-    Laptop();
-
     std::string modelName = "Thinkpad";
     float screenDisplay = 15.6f;
     int RAMSize = 32;
     int storageSize = 2000;
     float weight = 6.2f;
+
+    Laptop();
 
     void connectToWifi(bool connectionStatus = false);
     std::string checkAvailableOSUpdate(int currentOSId);
@@ -196,11 +202,13 @@ void Laptop::connectToWifi(bool connectionStatus)
     {
         connectionStatus = true;
     }
+
     std::cout << "You are connected to the Internet" << std::endl;
 }
 
 std::string Laptop::checkAvailableOSUpdate(int currentOSId)
 {
+    std::cout << "Storage size: " << storageSize << "GB\n";
     if (currentOSId < 10) // assume 10 is the latest OS id
     {
         return "Available update: Update OS version 10 \n";
@@ -227,14 +235,14 @@ void Laptop::playAudio(int audioFileId, int volume, std::string playMode)
 }
 
 struct FruitTree
-{
-    FruitTree();
-    
+{    
     std::string name = "Apple Tree";
     float height = 10.5f;
     double barkThicknessDiameter = 2.456;
     std::string fruitColor = "Red";
     std::string harvestSeason = "September";
+
+    FruitTree();
 
     void produceOxygen(int currentDayTimeInHour = 7);
     void absorbCarbonDioxide(int currentDayTimeInHour = 21);
@@ -277,8 +285,6 @@ int FruitTree::produceFruit(std::string currentSeason)
 
 struct Camera
 {
-    Camera();
-    
     std::string brandName = "Canon";
     float resolution = 26.7f;
     int numberOfShootingMode = 5;
@@ -287,19 +293,21 @@ struct Camera
 
     struct Lens
     {
-        Lens();
-        
         std::string model = "Canon EF-S";
         int maxFocalLengthInMM = 300;
         int minFocalLengthInMM = 55;
         int filterDiameterInMM = 58;
         float weightInOz = 13.2f;
-
+        
+        Lens();
+        
         void cover();
         void zoom(float zoomMode = 1.0f);
         void getFocus(double distanceToObject);
     };
 
+    Camera();
+    
     void shootPhoto(Lens currentLens, char shootingMode = 'A', bool lowLight = false);
     void recordVideo(Lens currentLens, int durationInSecond);
     void playFlash(bool lowLightIntensity = true);
@@ -319,11 +327,13 @@ Camera::Camera()
 
 void Camera::Lens::cover()
 {
-    std::cout << "covering lens..." << "\n";
+    std::cout << model << ": covering lens..." << "\n";
 }
 
 void Camera::Lens::zoom(float zoomMode)
 {
+    std::cout << "Focal length: " << minFocalLengthInMM << "mm-" << maxFocalLengthInMM << "mm\n";
+
     if (zoomMode < 1.0f)
     {
         std::cout << "Zoom OUT" << std::endl;
@@ -358,6 +368,9 @@ void Camera::Lens::getFocus(double distanceToObject)
 void Camera::shootPhoto(Camera::Lens currentLens, char shootingMode, bool lowLight)
 {
     currentLens.getFocus(50); // assume default value 50 for photo
+    
+    std::cout << "Resolution: " << resolution << "px\n";
+
     if (shootingMode == 'A')
     {
         std::cout << "Taking photo in auto mode \n";
@@ -389,14 +402,14 @@ void Camera::playFlash(bool lowLightIntensity)
 
 struct Cooktop
 {
-    Cooktop();
-    
     int numberOfBurner = 4;
     std::string surfaceMaterial = "Stainless steel";
     int cooktopVoltageRequirement = 120;
-    float width;
-    float depth;
-
+    float width = 30.0f;
+    float depth = 25.0f;
+    
+    Cooktop();
+    
     void burnFood();
     double consumeElectric(bool isConnectedToSource = true);
     void boilWater(int burnerId, int durationInSecond);
@@ -427,20 +440,21 @@ void Cooktop::boilWater(int burnerId, int durationInSecond)
     {
         return;
     }
-    std::cout << "Boiling water at burner no." + std::to_string(burnerId)
+    std::cout << "Total number of burners: " << numberOfBurner;
+    std::cout << ". Boiling water at burner no." + std::to_string(burnerId)
                 + " in " + std::to_string(durationInSecond) + " seconds \n";
 }
 
 
 struct Oven
 {
-    Oven();
-    
     int numberOfRack = 2;
     double ovenCapacity = 5.5;
     std::string doorMaterial = "Glass";
     int numberOfLightBulb = 2;
-    std::string temperatureSensorType;
+    std::string temperatureSensorType = "Thermocouple";
+
+    Oven();
 
     void broil(int temperatureInFarenheit, int durationInMinute);
     void bake(int rackId, int temperatureInFarenheit, int durationInMinute);
@@ -473,6 +487,8 @@ void Oven::bake(int rackId, int temperatureInFarenheit, int durationInMinute)
         std::cout << "Max temperature.\n";
         temperatureInFarenheit = 450;
     }
+
+    std::cout << "Total number of racks available: " << numberOfRack << "\n";
     std::cout << "Baking at " + std::to_string(temperatureInFarenheit)+ "F ...\n";
 }
 
@@ -484,13 +500,13 @@ void Oven::selfClean()
 
 struct Control
 {
-    Control();
-    
     int numberOfBurnerKnob = 4;
     std::string clockType = "Digital";
     int numberOfOvenCookingOption = 3;
     std::string ovenPowerOnLightColor = "Orange";
-    float infoDisplaySize;
+    float infoDisplaySize = 5.5f;
+
+    Control();
 
     int adjustOvenTemperature(int currentTemperature, int numberOfUpButtonClick, int numerOfDownButtonClick);
     int changeCookingTimer(int currentTimer, int numberOfUpButtonClick, int numerOfDownButtonClick);
@@ -517,6 +533,7 @@ void Control::turnOnOven(bool isOvenOn)
     if (isOvenOn == false)
     {
         std::cout << "Turning on...\n";
+        std::cout << "There are total of " << numberOfOvenCookingOption << " cooking options. Please choose one and cooking timer.\n";
         ovenPowerOnLightColor = "Orange";
     }
 }
@@ -524,13 +541,13 @@ void Control::turnOnOven(bool isOvenOn)
 
 struct RangeHood
 {
-    RangeHood();
-
     float chimneyHeight = 30.5f;
     float hoodHeight = 5.0f;
     int numberOfFanStrengthLevel = 5;
     std::string material = "Steel";
     std::string lightType = "LED";
+    
+    RangeHood();
 
     void suckSmoke(int fanStrengthLevel);
     void turnLightOn();
@@ -547,12 +564,13 @@ void RangeHood::suckSmoke(int fanStrengthLevel)
     if (fanStrengthLevel < (numberOfFanStrengthLevel - 1)) // from 0 to number of level
     {
         std::cout << "Fan is ON.\n";
+        std::cout << "There are " << numberOfFanStrengthLevel << " fan levels. Please choose one. Default is 1.";
     }
 }
 
 void RangeHood::turnLightOn()
 {
-    std::cout << "Light is ON.\n";
+    std::cout << lightType << " light is ON.\n";
 }
 
 int RangeHood::controlFanStrength(int currentStrengthIndicator, int numberOfCounterClockwiseTurn, int numberOfClockWiseTurn)
@@ -570,13 +588,13 @@ int RangeHood::controlFanStrength(int currentStrengthIndicator, int numberOfCoun
 
 struct UnderStoveStorage
 {
-    UnderStoveStorage();
-    
     std::string drawerColor = "Grey";
     std::string handleColor = "White";
-    float lengthOfSlidingRail;
+    float lengthOfSlidingRail = 20.0f;
     std::string material = "Steel";
-    double capacity;
+    double capacity = 5.0;
+
+    UnderStoveStorage();
 
     void slideOut();
     void slideIn();
@@ -604,19 +622,21 @@ void UnderStoveStorage::containBakeware(std::string bakewareName, bool isFull)
     {
         return;
     }
+
+    std::cout << "Capacity: " << capacity << "\n";
     std::cout << "Put " + bakewareName + " in.\n";
 }
 
 
 struct KitchenRange
-{
-    KitchenRange();
-    
+{    
     Cooktop cookTop;
     Oven oven;
     Control panelControl;
     RangeHood rangeHood;
     UnderStoveStorage drawer;
+
+    KitchenRange();
 
     void bakeFood(int foodId, int rackId, int temperatureInFarenheit, int durationInMinute);
     void lightUp();
