@@ -167,7 +167,7 @@ void OvenStove::broilFood(OvenStove::FoodItem food, int temperature, int duratio
 {
     std::cout << "Broiling " + food.name 
                     + " at " + std::to_string(temperature) + "F"
-                    + " in " + std::to_string(durationInMinute) + "minutes";
+                    + " in " + std::to_string(durationInMinute) + " minutes" + "\n";
 }
 
 void OvenStove::bakeFood(OvenStove::FoodItem food, int temperature, int durationInMinute, int rackId, bool preHeat)
@@ -186,7 +186,7 @@ void OvenStove::bakeFood(OvenStove::FoodItem food, int temperature, int duration
 
     std::cout << "Baking " + food.name 
                     + " at " + std::to_string(temperature) + "F"
-                    + " in " + std::to_string(durationInMinute) + "minutes";
+                    + " in " + std::to_string(durationInMinute) + " minutes" + "\n";
 }
 
 void OvenStove::lightUp(bool lightStatus)
@@ -235,10 +235,10 @@ std::string Laptop::checkAvailableOSUpdate(int currentOSId)
 {
     if (currentOSId < 10) // assume 10 is the latest OS id
     {
-        return "Update version 10.";
+        return "Available update: Update OS version 10 \n";
     }
 
-    return "Up to date!";
+    return "OS up to date! \n";
 }
 
 void Laptop::playAudio(int audioFileId, int volume, std::string playMode)
@@ -253,8 +253,8 @@ void Laptop::playAudio(int audioFileId, int volume, std::string playMode)
         std::cout << "Warning: audio too loud!" << std::endl;
     }
 
-    std::cout << "Playing audio " + std::to_string(audioFileId) 
-                + "at channel " + playMode 
+    std::cout << "Playing audio file number " + std::to_string(audioFileId) 
+                + " in mode: " + playMode 
                 << std::endl; 
 }
 
@@ -282,8 +282,8 @@ void FruitTree::produceOxygen(int currentDayTimeInHour)
 {
     if (currentDayTimeInHour > 5 && currentDayTimeInHour < 18) // from 6:00 to 17:59
     {
-        std::cout << "Day time!" << std::endl;
-        std::cout << name << "is producing oxygen.";
+        std::cout << "Day time! ";
+        std::cout << name << " is producing oxygen \n" ;
     }
 }
 
@@ -291,8 +291,8 @@ void FruitTree::absorbCarbonDioxide(int currentDayTimeInHour)
 {
     if (currentDayTimeInHour > 5 && currentDayTimeInHour < 18) // from 6:00 to 17:59
     {
-        std::cout << "Day time!" << std::endl;
-        std::cout << name << "is absorbing carbon dioxide.";
+        std::cout << "Day time! ";
+        std::cout << name << " is absorbing carbon dioxide \n";
     }
 }
 
@@ -383,7 +383,7 @@ void Camera::Lens::getFocus(double distanceToObject)
     else
     {
         // get focus on object
-        std::cout << "Ready." << std::endl;
+        std::cout << "Focus ready..." << std::endl;
     }
 }
 
@@ -392,7 +392,7 @@ void Camera::shootPhoto(Camera::Lens currentLens, char shootingMode, bool lowLig
     currentLens.getFocus(50); // assume default value 50 for photo
     if (shootingMode == 'A')
     {
-        std::cout << "Auto mode";
+        std::cout << "Taking photo in auto mode \n";
         playFlash(lowLight); // auto mode play flash if low light
     }
     else if (shootingMode == 'M')
@@ -405,16 +405,16 @@ void Camera::shootPhoto(Camera::Lens currentLens, char shootingMode, bool lowLig
 void Camera::recordVideo(Camera::Lens currentLens, int durationInSecond)
 {
     currentLens.getFocus(70); // assume default value 70 for video
-    std::cout << "Recording..." << std::endl;
+    std::cout << "Recording...";
     // record video
-    std::cout << "Duration: " + std::to_string(durationInSecond) + " Seconds"; 
+    std::cout << " duration: " + std::to_string(durationInSecond) + " seconds \n"; 
 }
 
 void Camera::playFlash(bool lowLightIntensity)
 {
     if (lowLightIntensity == true)
     {
-        std::cout << "playing flash..." << "\n";
+        std::cout << "Playing flash..." << "\n";
     }
 }
 
@@ -698,5 +698,51 @@ void KitchenRange::ventSmoke()
 int main()
 {
     Example::main();
+    std::cout << "\n";
+
+    OvenStove::FoodItem chicken;
+    std::cout << "Food item name: " << chicken.name << "\n";
+    chicken.clean("Water");
+    chicken.season("Salt");
+    chicken.cut(4, "knife");
+    std::cout << "\n";
+
+    OvenStove oldOvenStove;
+    std::cout << "Oven stove brand name: " << oldOvenStove.brandName << "\n";
+    oldOvenStove.broilFood(chicken, 375, 5);
+    oldOvenStove.bakeFood(chicken, 275, 60, 0, true);
+    oldOvenStove.lightUp(false);
+    std::cout << "\n";
+
+    Laptop laptop;
+    std::cout << "Brand model name: " << laptop.modelName << "\n";
+    laptop.connectToWifi(false);
+    std::cout << laptop.checkAvailableOSUpdate(3);
+    laptop.playAudio(2, 30, "Stereo speaker");
+    std:: cout << "\n";
+
+    FruitTree appleTree;
+    std::cout << "Harvest season: " << appleTree.harvestSeason << "\n";
+    appleTree.produceOxygen(10);
+    appleTree.absorbCarbonDioxide(10);
+    std::cout << "Number of fruits tree produced: " << appleTree.produceFruit("September") << "\n";
+    std:: cout << "\n";
+
+    Camera::Lens myLens;
+    std::cout << "Lens model: " << myLens.model << "\n";
+    myLens.cover();
+    myLens.zoom(0.5f);
+    myLens.getFocus(50);
+    std:: cout << "\n";
+
+    Camera camera;
+    std::cout << "Camera brand name: " << camera.brandName << "\n";
+    camera.shootPhoto(myLens, 'A', false);
+    camera.recordVideo(myLens, 40);
+    camera.playFlash(true);
+
+    
+
+    std:: cout << "\n";
     std::cout << "good to go!" << std::endl;
 }
