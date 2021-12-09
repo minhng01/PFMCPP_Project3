@@ -42,19 +42,19 @@ int main()
 
 struct OvenStove
 {
-    std::string brandName = "GE";
-    int numberOfBurner = 4;
-    int numberOfRack = 2;
-    float ovenCapacity = 5.0f;
-    int warrantyDuration = 12;
+    std::string brandName;
+    int numberOfBurner;
+    int numberOfRack;
+    float ovenCapacity;
+    int warrantyDuration;
 
     struct FoodItem
     {
-        std::string type = "Poultry";
-        std::string name = "Chicken breast";
-        float weight = 1.0f;
-        bool isSeasoned = false;
-        int expirationDayRemain = 7;
+        std::string type;
+        std::string name;
+        float weight;
+        bool isSeasoned;
+        int expirationDayRemain;
 
         FoodItem();
 
@@ -72,12 +72,20 @@ struct OvenStove
     FoodItem mainIngredient;
 };
 
-OvenStove::OvenStove()
+OvenStove::OvenStove() : brandName("GE"),
+                        numberOfBurner(4),
+                        numberOfRack(2),
+                        ovenCapacity(5.0f),
+                        warrantyDuration(12)
 {
     std::cout << "----------constructing OvenStove----------" << "\n";
 }
 
-OvenStove::FoodItem::FoodItem()
+OvenStove::FoodItem::FoodItem() : type("Poultry"),
+                                name("Chicken breast"),
+                                weight(1.0f),
+                                isSeasoned(false),
+                                expirationDayRemain(7)
 {
     std::cout << "----------constructing FoodItem----------" << "\n";
 }
@@ -178,11 +186,11 @@ void OvenStove::lightUp(bool lightStatus)
 
 struct Laptop
 {
-    std::string modelName = "Thinkpad";
-    float screenDisplay = 15.6f;
-    int RAMSize = 32;
-    int storageSize = 2000;
-    float weight = 6.2f;
+    std::string modelName;
+    float screenDisplay;
+    int RAMSize;
+    int storageSize;
+    float weight;
 
     Laptop();
 
@@ -191,7 +199,11 @@ struct Laptop
     void playAudio(int audioFileId = 0, int volume = 50, std::string playMode = "Headphones");
 };
 
-Laptop::Laptop()
+Laptop::Laptop() : modelName("Thinkpad"),
+                screenDisplay(15.6f),
+                RAMSize(32),
+                storageSize(2000),
+                weight(6.2f)
 {
     std::cout << "----------constructing Laptop----------" << "\n";
 }
@@ -236,11 +248,11 @@ void Laptop::playAudio(int audioFileId, int volume, std::string playMode)
 
 struct FruitTree
 {    
-    std::string name = "Apple Tree";
-    float height = 10.5f;
-    double barkThicknessDiameter = 2.456;
-    std::string fruitColor = "Red";
-    std::string harvestSeason = "September";
+    std::string name;
+    float height;
+    double barkThicknessDiameter;
+    std::string fruitColor;
+    std::string harvestSeason;
 
     FruitTree();
 
@@ -249,7 +261,11 @@ struct FruitTree
     int produceFruit(std::string currentSeason = "December");
 };
 
-FruitTree::FruitTree()
+FruitTree::FruitTree() : name("Apple Tree"),
+                        height(10.5f),
+                        barkThicknessDiameter(2.456),
+                        fruitColor("Red"),
+                        harvestSeason("September")
 {
     std::cout << "----------constructing FruitTree----------" << "\n";
 }
@@ -402,11 +418,11 @@ void Camera::playFlash(bool lowLightIntensity)
 
 struct Cooktop
 {
-    int numberOfBurner = 4;
-    std::string surfaceMaterial = "Stainless steel";
-    int cooktopVoltageRequirement = 120;
-    float width = 30.0f;
-    float depth = 25.0f;
+    int numberOfBurner;
+    std::string surfaceMaterial;
+    int cooktopVoltageRequirement;
+    float width;
+    float depth;
     
     Cooktop();
     
@@ -415,7 +431,11 @@ struct Cooktop
     void boilWater(int burnerId, int durationInSecond);
 };
 
-Cooktop::Cooktop()
+Cooktop::Cooktop() : numberOfBurner(4),
+                    surfaceMaterial("Stainless steel"),
+                    cooktopVoltageRequirement(120),
+                    width(30.0f),
+                    depth(25.0f)
 {
     std::cout << "----------constructing Cooktop----------" << "\n";
 }
@@ -448,11 +468,11 @@ void Cooktop::boilWater(int burnerId, int durationInSecond)
 
 struct Oven
 {
-    int numberOfRack = 2;
-    double ovenCapacity = 5.5;
-    std::string doorMaterial = "Glass";
-    int numberOfLightBulb = 2;
-    std::string temperatureSensorType = "Thermocouple";
+    int numberOfRack;
+    double ovenCapacity;
+    std::string doorMaterial;
+    int numberOfLightBulb;
+    std::string temperatureSensorType;
 
     Oven();
 
@@ -461,7 +481,11 @@ struct Oven
     void selfClean();
 };
 
-Oven::Oven()
+Oven::Oven() : numberOfRack(2),
+            ovenCapacity(5.5),
+            doorMaterial("Glass"),
+            numberOfLightBulb(2),
+            temperatureSensorType("Thermocouple")
 {
     std::cout << "----------constructing Oven----------" << "\n";
 }
