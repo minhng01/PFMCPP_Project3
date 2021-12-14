@@ -128,7 +128,7 @@ void OvenStove::FoodItem::storeInFridge(int threshold, int expirationDuration){
     while (expirationDayRemain > threshold)
     {
         std::cout << "There are " << expirationDayRemain << " days till expired. Keep in fridge.\n";
-        expirationDayRemain--;
+        --expirationDayRemain;
         
         if (expirationDayRemain <= threshold)
         {
@@ -200,7 +200,7 @@ void OvenStove::cookFoodOnBurner(int threshold, int totalBurner)
     while (numberOfBurner > threshold)
     {
         std::cout << "Cook food on burner no." << numberOfBurner << std::endl;
-        numberOfBurner--;
+        --numberOfBurner;
         if (numberOfBurner <= threshold)
         {
             std::cout << "No burner left to cook food.\n";
@@ -283,7 +283,7 @@ int Laptop::numberOfFileOnDisk(int eachFileSize, int availableDiskStorage, int s
                 << maxNumOfFile << " maximum files that can be stored?\n";
     
     int numberOfFile = 0;
-    for (int i = 1; i <= ((availableDiskStorage - storageForOS) / eachFileSize); i++)
+    for (int i = 1; i <= ((availableDiskStorage - storageForOS) / eachFileSize); ++i)
     {
         if (i > maxNumOfFile)
             return numberOfFile;
@@ -365,7 +365,7 @@ double FruitTree::treeGrowTrack(int currentAge, int lifeSpan, double maxSize)
     std::cout << "Current barkThicknessDiameter: " << barkThicknessDiameter << "\n";
     std::cout << "Max life span (year): " << lifeSpan << "\n";
 
-    for (int i = currentAge; i <= lifeSpan; i++)
+    for (int i = currentAge; i <= lifeSpan; ++i)
     {
         if ((barkThicknessDiameter + 0.5) > maxSize)
             return barkThicknessDiameter;
@@ -542,12 +542,12 @@ void Camera::adjustWhiteBalanceMode(int target)
         if (currentWhiteBalanceMode < target)
         {   
             std::cout << "Current white balance mode: " << currentWhiteBalanceMode << std::endl;
-            currentWhiteBalanceMode++;
+            ++currentWhiteBalanceMode;
         }
         else if (currentWhiteBalanceMode > target)
         {
             std::cout << "Current white balance mode: " << currentWhiteBalanceMode << std::endl;
-            currentWhiteBalanceMode--;
+            --currentWhiteBalanceMode;
         }
     }
 
@@ -619,7 +619,7 @@ Cooktop::Cooktop() : numberOfBurner(4),
 void Cooktop::turnOnBurner(int target)
 {
     std::cout << "Number of burners in use: " << numberOfBurnerInUse << std::endl;
-    for (int i = numberOfBurnerInUse; i <= target; i++)
+    for (int i = numberOfBurnerInUse; i <= target; ++i)
     {
         std::cout << i << " burner is turned on/in use.\n";
         
@@ -687,7 +687,7 @@ void Oven::turnOnLight(int target)
     while (numberOfLightOn <= target && numberOfLightOn <= numberOfLightBulb)
     {
         std::cout << "Turning " << numberOfLightOn << " oven light bulbs on.\n";
-        numberOfLightOn++;
+        ++numberOfLightOn;
     }
 }
 
@@ -748,7 +748,7 @@ Control::Control()
 void Control::turnBurnerKnob(int target)
 {
     std::cout << "Number of knobs turned: " << numberOfTurnedBurnerKnob << std::endl;
-    for (int i = numberOfTurnedBurnerKnob; i <= target; i++)
+    for (int i = numberOfTurnedBurnerKnob; i <= target; ++i)
     {
         std::cout << i << " burner knobs is turned.\n";
         
@@ -807,7 +807,7 @@ void RangeHood::turnOnFan(int targetFanLevel)
     while (currentFanLevel <= targetFanLevel && currentFanLevel <= numberOfFanStrengthLevel)
     {
         std::cout << "Adjusted current fan level: " << currentFanLevel << ".\n";
-        currentFanLevel++;
+        ++currentFanLevel;
     }
 }
 
@@ -861,7 +861,7 @@ UnderStoveStorage::UnderStoveStorage()
 
 void UnderStoveStorage::putPanIn(int numberOfPan)
 {
-    for (int i = 1; i <= numberOfPan; i++)
+    for (int i = 1; i <= numberOfPan; ++i)
     {
         if (capacity <= 0)
         {
@@ -871,7 +871,7 @@ void UnderStoveStorage::putPanIn(int numberOfPan)
         }
 
         std::cout << "Storing " << i << " pans in storage.\n";
-        capacity--;
+        --capacity;
     }
 }
 
@@ -926,7 +926,7 @@ void KitchenRange::cookTime(int cookTimeLeft, int notifyThreshold)
             std::cout << "Watch out: " << cookTimeLeft << " hours left on cooking timer.\n";
 
         std::cout << cookTimeLeft << " hours left on cooking timer.\n";
-        cookTimeLeft--;
+        --cookTimeLeft;
     }
 }
 
